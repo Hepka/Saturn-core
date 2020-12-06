@@ -1,0 +1,15 @@
+{
+  "name": "saturn-bot-core",
+  "version": "1.0.0",
+  "description": "core for discord.js bots.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Demetry#5960",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^14.14.10",
+    "discord.js": "^12.5.1"
+  }
+}
