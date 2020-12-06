@@ -1,6 +1,8 @@
 const Discord = require(`discord.js`);
 const FileSystem = require(`fs`);
+
 const config = require(`./config.json`)
+const dictionary = require(`./json/dictionary.json`)
 
 const Client = new Discord.Client();
 
@@ -47,6 +49,7 @@ Client.on(`message`, async message => {
     if ((message.channel.type == 'dm') || message.author.bot) return;
     
     let prefix = config.prefix;
+    let language = `ru`
 
     if (!message.content.toLowerCase().startsWith(prefix)) return;
 
@@ -58,12 +61,12 @@ Client.on(`message`, async message => {
     let command = Client.commands.find(command_ => command_.config.name == commandname || command_.config.aliases.includes(commandname));
 
     cooldowns[message.guild.id] ??= 0
-    if (cooldowns[message.guild.id] + 3e3 > Date.now()) return message.reply(`пацан кд типа да`)
+    if (cooldowns[message.guild.id] + 3e3 > Date.now()) return message.reply(dictionary[language]["abuse cooldown"])
 
-    if (!command) return message.reply(`Ошибка: комманда не найдена.`)
-    if (!command.config.visible && !config.owners.includes(message.author.id)) return message.reply(`Вам не доступна команда как бы да.`)
-    if (command.config.args.length > arguments.length) return message.reply(`Аргументов мало. Оправдание: ${command.config.args[arguments.length]}`)
-    if (!command.config.permissions.length || !command.config.permissions.some(permission => message.member.permissions.has(permission))) return message.reply(`чел, прав нету как бы.`)
+    if (!command) return message.reply(dictionary[language]["command not find"])
+    if (!command.config.visible && !config.owners.includes(message.author.id)) return message.reply(dictionary[language]["owner command"])
+    if (command.config.args.length > arguments.length) return message.reply(dictionary[language]["few arguments"] + command.config.args[arguments.length])
+    if (!command.config.permissions.length || !command.config.permissions.some(permission => message.member.permissions.has(permission))) return message.reply(dictionary[language]["missing permissions"])
 
     cooldowns[message.guild.id] = Date.now()
 

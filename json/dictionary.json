@@ -1,0 +1,16 @@
+{
+    "ru": {
+        "command not find": "команда не найдена.",
+        "abuse cooldown": "на сервер наложена задержка!",
+        "few arguments": "мало аргументов. Сообщение команды: ",
+        "missing permissions": "вам не хватает прав.",
+        "owner command": "вам не доступна данная команда."
+    },
+    "statuses": [{
+        "type": "WATCHING",
+        "name": "$serverCount servers!"
+    }, {
+        "type": "WATCHING",
+        "name": "$userCount users!"
+    }] 
+}
