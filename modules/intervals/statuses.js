@@ -13,12 +13,7 @@ module.exports = {
             "serverCount": client.guilds.cache.size,
             "userCount": client.users.cache.size // client.guilds.cache.array().reduce((a, b) => a.memberCount + b.memberCount)
         }
-
-        console.log(flags)
-        console.log(statuses)
-        console.log(num)
-        // console.log(flagsF(statuses[this.num].name, flags, "$"))
-
+        
         client.user.setActivity({
             "type": statuses[num].type, 
             "name": flagsF(statuses[num].name, flags, "$")

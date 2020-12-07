@@ -66,7 +66,7 @@ Client.on(`message`, async message => {
     if (!command) return message.reply(dictionary[language]["command not find"])
     if (!command.config.visible && !config.owners.includes(message.author.id)) return message.reply(dictionary[language]["owner command"])
     if (command.config.args.length > arguments.length) return message.reply(dictionary[language]["few arguments"] + command.config.args[arguments.length])
-    if (!command.config.permissions.length || !command.config.permissions.some(permission => message.member.permissions.has(permission))) return message.reply(dictionary[language]["missing permissions"])
+    if (!!command.config.permissions.length && !command.config.permissions.some(permission => message.member.permissions.has(permission))) return message.reply(dictionary[language]["missing permissions"])
 
     cooldowns[message.guild.id] = Date.now()
 
