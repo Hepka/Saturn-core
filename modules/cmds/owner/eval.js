@@ -2,13 +2,22 @@ const Discord = require(`discord.js`);
 const util = require(`util`)
 
 module.exports.run = (message = new Discord.Message(), client = new Discord.Client(), args = ['']) => {
+    let msg;
     try {
         let result = util.inspect(eval(message.content.slice(message.content.split(/ +/g)[0].length)), {depth: 0})
 
-        message.channel.send("```js\n" + result + "\n```")
+        msg = "```js\n" + result + "\n```"
     } catch(e) {
-        message.channel.send("```js\n" + e + "```")
+        msg = "```js\n" + e + "```"
     }
+
+    message.channel.send(msg).then(async msg_ => {
+        msg_.react("❌");
+        msg_.awaitReactions((reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id, {max: 1, time: 20000}).then(collected => {
+            const reaction = collected.first()
+            if (reaction?.emoji.name == "❌") msg_.delete()
+        });
+    })
 }
 
 module.exports.config = {

@@ -16,6 +16,7 @@ module.exports.run = (message = new Discord.Message(), client = new Discord.Clie
         help.addField(`Использование:`, command.config.using)
         help.addField(`Примеры:`, command.config.examples.map(example => config.prefix + example).join(`, `))
         help.addField(`Алиасы:`, command.config.aliases.join(", ") ?? "нет.")
+        help.addField(`Права:`, command.config.permissions.length == 0 ? "доступна всем." : command.config.permissions.join(", "))
     } 
 
     if (categories.has(key)) {

@@ -15,15 +15,3 @@ module.exports.config = {
     using: `ping`,
     examples: []
 }
-
-/*
-
-module.exports.config = {
-    aliases: [``],
-    description: ``,
-    bigDescription: ``,
-    using: ``,
-    examples: [``]
-}
-
-*/  
