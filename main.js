@@ -11,6 +11,8 @@ Client.commands = new Discord.Collection();
 FileSystem.readdir(`modules/cmds/`, async (error, categories) => {
     if (error) console.log(error);
 
+    let i = 0;
+
     categories.forEach(async category => {
         FileSystem.readdir(`modules/cmds/${category}/`, async (error, commands) => {
             if (error) console.log(error);
@@ -23,6 +25,8 @@ FileSystem.readdir(`modules/cmds/`, async (error, categories) => {
                 props.config.visible ??= !(category == `owner`);
                 props.config.category ??= category;
                 
+                console.log(`${++i}. load ${command} in ${category}`)
+
                 Client.commands.set(props.config.name, props);
             })
         })
@@ -66,7 +70,7 @@ Client.on(`message`, async message => {
     if (!command) return message.reply(dictionary[language]["command not find"])
     if (!command.config.visible && !config.owners.includes(message.author.id)) return message.reply(dictionary[language]["owner command"])
     if (command.config.args.length > arguments.length) return message.reply(dictionary[language]["few arguments"] + command.config.args[arguments.length])
-    if (!!command.config.permissions.length && !command.config.permissions.some(permission => message.member.permissions.has(permission))) return message.reply(dictionary[language]["missing permissions"])
+    if (command.config.permissions.length && !command.config.permissions.some(permission => message.member.permissions.has(permission))) return message.reply(dictionary[language]["missing permissions"])
 
     cooldowns[message.guild.id] = Date.now()
 

@@ -11,7 +11,7 @@ module.exports.run = (message = new Discord.Message(), client = new Discord.Clie
     })
 
     let toB = str => str.split("").map(a => SB[a] ?? '0'.repeat(bits)).join("")
-    let toS = str => str.match(new RegExp(`/.{${bits}}/`, `g`)).map(a => BS[a] ?? "�").join("")
+    let toS = str => str.match(new RegExp(`.{${bits}}`, `g`)).map(a => BS[a] ?? "�").join("")
     
     let xor = (str, key) => {
         str = toB(str)

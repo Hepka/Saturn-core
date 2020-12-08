@@ -4,11 +4,9 @@ const util = require(`util`)
 module.exports.run = (message = new Discord.Message(), client = new Discord.Client(), args = ['']) => {
     let msg;
     try {
-        let result = util.inspect(eval(message.content.slice(message.content.split(/ +/g)[0].length)), {depth: 0})
-
-        msg = "```js\n" + result + "\n```"
-    } catch(e) {
-        msg = "```js\n" + e + "```"
+        msg = "```js\n" + util.inspect(eval(message.content.slice(message.content.split(/ +/g)[0].length)), {depth: 0}) + "\n```"
+    } catch(e) { 
+        msg = "```js\n" + e + "```" 
     }
 
     message.channel.send(msg).then(async msg_ => {
