@@ -31,5 +31,5 @@ module.exports.config = {
     description: `Зашифровать строку`,
     bigDescription: `Зашифровка строки с использованием xor оператора. Внимание, русские символы не используются`,
     using: `cipher <ключ> <строка>`,
-    examples: [`cipher boat creator`]
+    examples: [`cipher boat creator`]   
 }
