@@ -4,6 +4,7 @@ create config.json file.
 - token: token of your bot;
 - prefix: prefix for your bot;
 - owners: ids of bot owners;
+- language: bot's language;
 
 # 2.0 commands
 create commands to "modules/cmds/{category}/{name}.js"
