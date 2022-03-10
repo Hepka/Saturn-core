@@ -53,7 +53,7 @@ Client.on(`message`, async message => {
     if ((message.channel.type == 'dm') || message.author.bot) return;
     
     let prefix = config.prefix;
-    let language = `ru`
+    let language = config.language
 
     if (!message.content.toLowerCase().startsWith(prefix)) return;
 
